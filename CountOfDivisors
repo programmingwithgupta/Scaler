@@ -1,0 +1,50 @@
+class Solution {
+    public List<int> solve(List<int> A) {
+      
+        int n = A.Count ;
+        List<int> res = new List<int>();
+        
+        int[] spf = new int[1000005];
+        //create spf array
+
+        for(int i=1 ; i <= 1000000 ; i++){
+            spf[i]= i;
+        }
+        //prime factorization
+        for(int i = 2 ; i*i <=1000000 ; i++){
+            if(spf[i]== i){
+                for(int j=i*i; j<= 1000000 ; j+=i){
+                    if(spf[j]==j){
+                        spf[j]= i;
+                    }
+                }
+            }
+        }
+
+
+        //
+        for(int i=0; i < n; i++){
+
+            int num = A[i];
+            int total = 1;
+            int count = 0 ;
+            while(num > 1){
+                count = 0;
+                int x = spf[num];
+
+                while(num % x == 0){
+                    count++;
+                    num = num/x;
+                }
+                total = total * (count + 1);
+            }
+           // Console.WriteLine(count);
+            
+            
+            //Console.WriteLine(total);
+            res.Add(total);
+        }
+
+        return res;
+    }
+}
