@@ -1,0 +1,30 @@
+/**
+
+Given a binary search tree of integers. You are given a range B and C.
+
+Return the count of the number of nodes that lie in the given range.
+
+
+ * Definition for binary tree
+ * class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) {this.val = x; this.left = this.right = null;}
+ * }
+ */
+class Solution {
+    public int solve(TreeNode A, int B, int C) {
+        if(A == null)
+            return 0;
+        else if(A.val <=C && A.val >= B){
+           return 1 + solve(A.right, B,C) + solve(A.left,B,C);
+        }
+        else if(A.val < C){
+           return solve(A.right,B,C);
+        }
+        else 
+            return solve(A.left,B,C);
+        return 0;
+    }
+}
