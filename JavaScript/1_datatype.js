@@ -58,3 +58,6 @@ console.log(obj);
 
 
 
+var bar = null;
+
+console.log(typeof bar === "object");  // returns true
